@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Add Employee</title>
+
+<link
+	href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700"
+	rel="stylesheet">
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+	integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+	crossorigin="anonymous">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+<link rel="stylesheet" th:href="@{/css/registration.css}">
+</head>
+<body>
+	<!-- <div align="center">
+		<h1>Add Employee</h1>
+		<br />
+		<form action="/save" th:object="${user}" method="post">
+			<table border="0" cellpadding="10">
+				<tr>
+					<td>Name</td>
+					<td><input type="text" th:field="*{name}"   pattern="^[a-zA-Z\s.*]*$" required/></td>
+				</tr>
+				<tr>
+					<td>Email</td>
+					<td><input type="email" th:field="*{email}" pattern="^(.+)@(.+)$" required/></td>
+				</tr>
+				<tr>
+					<td>Password</td>
+					<td><input type="password" th:field="*{pass}"  pattern="^.{4,}$" required/></td>
+				</tr>
+				<tr>
+					<td>Address</td>
+					<td><input type="text" th:field="*{address}"  pattern="^.{1,}$" required/></td>
+				</tr>
+				<tr>
+					<td>Role</td>
+					<td><select th:field="*{role}">
+							<option th:value="admin">ADMIN</option>
+							<option th:value="employee">EMPLOYEE</option>
+					</select></td>
+				</tr>
+				<tr>
+					<td>Joining Date</td>
+					<td class="date_td"><input type="date"
+						th:field="*{joiningDate}"  pattern="^.{1,}$" required/> <i class="fas fa-calendar-alt"></i></td>
+				</tr>
+				<tr>
+					<td colspan="2"><input type="submit" value="Save" name="task" class="save" /></td>
+				</tr>
+			</table>
+		</form>
+	</div> -->
+	
+	
+	
+	<div class="container">
+     <th:block th:include="fragments/header :: header"></th:block> 
+    </div> 
+    
+    
+	<div class="testbox">
+		<form action="/save" th:object="${user}" method="post">
+			<div class="banner">
+				<h1>Add Employee</h1>
+			</div>
+			
+			<div class="item">
+				<p>Name</p>
+				<div class="item">
+					<input type="text" th:field="*{name}"  pattern="^[a-zA-Z\s.*]*$" required/>	
+				</div>
+			</div>
+			<div class="item">
+				<p>Email</p>
+				<input type="email" th:field="*{email}" pattern="^(.+)@(.+)$" required/>
+			</div>
+			<div class="item">
+				<p>Password</p>
+				<input type="password" th:field="*{pass}"  pattern="^.{4,}$" required/>
+			
+			</div>
+		
+			<div class="item">
+				<p>Address</p>
+				<input type="text" th:field="*{address}"  pattern="^.{1,}$" required/>
+			</div>
+			
+			<div class="item">
+				<p>Roles</p>
+				<p><select th:field="*{role}">
+							<option th:value="admin">ADMIN</option>
+							<option th:value="employee">EMPLOYEE</option>
+					</select></p>
+			</div>
+
+			<div class="item">
+				<p>Joining Date</p>
+				<input type="date" th:field="*{joiningDate}"  pattern="^.{1,}$" required/>
+				<i class="fas fa-calendar-alt"></i>
+			
+			</div>
+			<div class="btn-block">
+				    <button type="submit">AddEmployee</button>
+                   <!-- <input type="submit" value="Update" name="task" class="save"/> -->
+			</div>
+		</form>
+	</div>
+</body>
+</html>

@@ -1,0 +1,213 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+      
+     
+<head>
+<meta charset="UTF-8">
+<title>Employee Management</title>
+ <!--  <link rel="stylesheet" th:href="@{/css/style.css}">   -->
+<!-- <link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"> -->
+ <!-- <link rel="stylesheet" th:href="@{/css/registration.css}">  -->
+<script src="https://kit.fontawesome.com/4980624997.js"
+	crossorigin="anonymous"></script>
+	
+	<!-- <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"> --> 
+	
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+	
+	<!-- <style type="text/css">
+	
+	.white{
+	color:white
+	}
+	.table{
+	cellpadding:10;
+	}
+	
+	.tr_head{
+	border-bottom: 1px white solid
+	}
+	
+	.tr_head, .tr_data{
+	border-bottom: 1px white solid
+   } 
+
+.tr_data:hover {
+	color:white
+}
+	</style>
+ -->
+</head>
+<body>
+
+     
+	    <div class="container">
+	    <th:block th:include="fragments/header :: header"></th:block> 
+	    </div>
+		
+	  
+        
+        <div sec:authorize="hasAnyAuthority('admin','employee')">
+		       <div th:if="${current_user.email=='sirak@gmail.com'}">
+		        <img style="margin-top: 40px; margin-left: 650px" width="80" th:src="@{/images/sirak.jpg}" />
+		        <b><span sec:authentication="name">userName</span></b> &nbsp;
+		        <h1 style="margin-left: 617px" sec:authentication="principal.authorities">Roles</h1>
+		       </div>
+		       
+		       <div th:if="${current_user.email=='isayas088@gmail.com'}">
+		        <img style="margin-top: 40px; margin-left: 650px" width="80" th:src="@{/images/isayas.jpg}" />
+		        <b><span sec:authentication="name">userName</span></b> &nbsp;
+		        <h1 style="margin-left: 617px" sec:authentication="principal.authorities">Roles</h1>
+		       </div>
+		     
+		</div>
+		
+		
+		 <!-- <div sec:authorize="isAuthenticated()">
+			Welcome <b><span sec:authentication="name">userName</span></b> &nbsp;
+			<i><span sec:authentication="principal.authorities">Roles</span></i>
+			
+		 </div> -->
+
+     
+	
+	
+	     
+		<!-- <div sec:authorize="isAuthenticated()">
+			Welcome <b><span sec:authentication="name">userName</span></b> &nbsp;
+			<i><span sec:authentication="principal.authorities">Roles</span></i>
+			
+		</div>
+		
+		<div sec:authorize="hasAnyAuthority('admin','employee')">
+		       <div th:if="${current_user.email=='sirak@gmail.com'}">
+		        <img style="margin-top: -100px; margin-left: 150px" width="50" th:src="@{/images/sirak.jpg}" />
+		       
+		       </div>
+		       
+		       <div th:if="${current_user.email=='isayas088@gmail.com'}">
+		        <img style="margin-top: -100px; margin-left: 150px" width="50" th:src="@{/images/isayas.jpg}" />
+		       
+		       </div>
+		     
+		</div>
+		
+		<div sec:authorize="hasAnyAuthority('admin','employee')">
+		    <div th:if="${current_user.role == 'admin' || (current_user.role == 'employee' && user.id==current_user.id)}">
+		    <img style="margin-top: -100px; margin-left: 150px" width="50" th:src="@{/images/isayas.jpg}" />
+		    </div>
+		</div>
+		
+	
+
+		<form sec:authorize="isAuthenticated()" th:action="@{/logout}"
+			method="post">
+			<input type="submit" value="Logout" />
+		</form>
+
+
+		<h1>Employee Manager</h1>
+		<a sec:authorize="isAnonymous()" href="/login"  class="white">Login</a>
+		
+		<div sec:authorize="hasAnyAuthority('admin')">
+			<a href="add_employee"  class="white">Add Employee</a>
+		</div> -->
+
+		<br />
+		<br />
+		<!-- <table class="table">
+			<thead>
+				<tr class="tr_head">
+					<th>Employee Id</th>
+					<th>Name</th>
+					<th>Email</th>
+					<th>Joining Date</th>
+					<th>Address</th>
+
+					<th sec:authorize="hasAnyAuthority('admin', 'employee')">Actions</th>
+
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="user : ${userList}" class="tr_data">
+					<td th:text="${user.id}"/>
+					<td th:text="${user.name}"/>
+					<td th:text="${user.email}"/>
+					<td th:text="${user.joiningDate}"/>
+					<td th:text="${user.address}"/>
+
+					<td sec:authorize="hasAnyAuthority('admin', 'employee')" class="form_td">
+					
+					<form action="/edit_employee" method="post" th:if="${current_user.role == 'admin' || (current_user.role == 'employee' && user.id==current_user.id)}">
+						<input type="hidden" th:value="${user.id}" name="id" />
+						<input type="submit" value="update"  class="linkbtnform">
+					</form>
+					<form action="/delete_employee" method="post" th:if="${current_user.role == 'admin' && user.id!=current_user.id}">
+						<input type="hidden" th:value="${user.id}" name="id" />
+						<input type="submit" value="delete"  class="linkbtnform">
+					</form>
+					
+					 <form action="/add_employee" method="post" th:if="${current_user.role == 'admin'}">
+						<input type="hidden" />
+						<input type="submit" value="add"  class="linkbtnform">
+					</form> 
+				</tr>
+			</tbody>
+		</table> -->
+		
+		
+	
+	<div class="container">	
+		<table class="table table-success table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Employee Id</th>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Joining Date</th>
+      <th scope="col">Address</th>
+      <th sec:authorize="hasAnyAuthority('admin', 'employee')">Update</th>
+      <th sec:authorize="hasAuthority('admin')">Delete</th>
+      <th sec:authorize="hasAuthority('admin')">Add</th>
+     
+    </tr>
+  </thead>
+  <tbody>
+        <tr th:each="user : ${userList}">
+					<td th:text="${user.id}"/>
+					<td th:text="${user.name}"/>
+					<td th:text="${user.email}"/>
+					<td th:text="${user.joiningDate}"/>
+					<td th:text="${user.address}"/>
+
+					<td sec:authorize="hasAnyAuthority('admin', 'employee')">
+					<form action="/edit_employee" method="post" th:if="${current_user.role == 'admin' || (current_user.role == 'employee' && user.id==current_user.id)}">
+						<input type="hidden" th:value="${user.id}" name="id" />
+						<input type="submit" value="update"  >
+					</form>
+					</td>
+					
+					<td sec:authorize="hasAuthority('admin')">
+					<form action="/delete_employee" method="post" th:if="${current_user.role == 'admin' && user.id!=current_user.id}">
+						<input type="hidden" th:value="${user.id}" name="id" />
+						<input type="submit" value="delete" >
+					</form>
+					</td>
+					<td sec:authorize="hasAuthority('admin')">
+					 <form action="/add_employee" method="post" th:if="${current_user.role == 'admin'}">
+						<input type="hidden" />
+						<input type="submit" value="add">
+					</form> 
+					</td>
+				</tr>
+
+  </tbody>
+</table>
+	</div>
+</body>
+</html>

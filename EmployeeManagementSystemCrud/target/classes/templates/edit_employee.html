@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Edit Employee</title>
+
+<link
+	href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700"
+	rel="stylesheet">
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+	integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+	crossorigin="anonymous">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+<link rel="stylesheet" th:href="@{/css/registration.css}">
+</head>
+<body>
+
+	 <div class="container">
+     <th:block th:include="fragments/header :: header"></th:block> 
+    </div> 
+    
+    
+	<div class="testbox">
+		<form action="/save" th:object="${user}" method="post">
+			<div class="banner">
+				<h1>Registration</h1>
+			</div>
+			
+			<div class="item">
+				<p>ID</p>
+				<div class="item">
+					<input type="text" th:field="*{id}" readonly="readonly" />
+				
+				</div>
+			</div>
+			
+
+			<div class="item">
+				<p>Name</p>
+				<div class="item">
+					<input type="text" th:field="*{name}"  pattern="^[a-zA-Z\s.*]*$" required/>	
+				</div>
+			</div>
+			<div class="item">
+				<p>Email</p>
+				<input type="email" th:field="*{email}" pattern="^(.+)@(.+)$" required/>
+			</div>
+			<div class="item">
+				<p>Password</p>
+				<input type="password" name="pass" th:field="*{pass}" />
+				<p th:if="${id==current_user.id}"><input type="password" th:field="*{pass}" pattern="^.{4,}$" required/></p>
+				<p th:if="${id!=current_user.id}"><input type="hidden" th:field="*{pass}" th:value="*{pass}"/></p>
+				<p><input type="hidden" name="current_id" th:value="${current_user.id}"/></p>
+			</div>
+		
+			<div class="item">
+				<p>Address</p>
+				<input type="text" th:field="*{address}"  pattern="^.{1,}$" required/>
+			</div>
+			
+			<div class="item">
+				<p>Roles</p>
+				<p><select th:field="*{role}">
+							<option sec:authorize="hasAnyAuthority('admin')" th:value="admin">ADMIN</option>
+							<option th:value="employee">EMPLOYEE</option>
+					</select></p>
+			</div>
+
+			<div class="item">
+				<p>Joining Date</p>
+				<input type="date" th:field="*{joiningDate}"  pattern="^.{1,}$" required/>
+				<i class="fas fa-calendar-alt"></i>
+			
+			</div>
+			<div class="btn-block">
+				    <button type="submit">Update</button>
+                   <!-- <input type="submit" value="Update" name="task" class="save"/> -->
+			</div>
+		</form>
+	</div>
+</body>
+</html>

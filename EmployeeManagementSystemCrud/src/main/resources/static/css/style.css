@@ -1,0 +1,170 @@
+@charset "UTF-8";
+
+body {
+	background: #6baf92;
+	font-family: 'Brush Script MT', cursive;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	height: 90vh;
+}
+
+div {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+	color: #207567
+}
+
+input[type="text"], input[type="email"],input[type="password"], select {
+	border: 0;
+	border-bottom: 1px solid #fff;
+	background: transparent;
+	padding: 14px 0 5px 0;
+	font-size: 18px;
+	color: #207567;
+	text-align: center;
+}
+
+input[type="password"]:focus,input[type="password"]:hover,input[type="text"]:focus, input[type="email"]:focus, input[type="text"]:hover,
+	input[type="email"]:hover, select:focus, select:hover {
+	border: none;
+	outline: none;
+	border-bottom: 1px solid #207567;
+}
+
+.transpaerntbtn {
+	border: none;
+	background: transparent;
+	cursor: pointer
+}
+
+i {
+	color: #fff;
+	font-size: 18px;
+}
+
+span {
+	color: white;
+	text-shadow: 0 0 1px #C4FCEF;
+}
+
+.linkbtn {
+	display: inline-block;
+	padding: 10px 20px;
+	text-align: center;
+	text-decoration: none;
+	color: #ffffff;
+	background-color: transparent;
+	border-radius: 6px;
+	outline: none;
+	border: 1px solid;
+	font-weight: bolder;
+}
+
+input[type=submit] {
+	padding: 5px 40px;
+	background: #ccc;
+	border:none;
+	border-bottom: 1px solid;
+	cursor: pointer;
+	color: #ffffff;
+	background-color: transparent;
+	width: 95%;
+}
+
+.save{
+	border: 1px solid !important;
+	border-radius:50px;
+	width:100% !important;
+}
+
+.userform {
+	border: 1px solid #d1f4df;
+	padding: 30px;
+	border-radius: 25px;
+	box-shadow: 0 0 3px #C4FCEF;
+	width: 350px;
+	height: 500px;
+}
+
+td {
+	text-align: center
+}
+
+.tr_head, .tr_data{
+	border-bottom: 1px white solid
+}
+
+.tr_data:hover {
+	color:white
+}
+
+table {
+	border-collapse: collapse;
+	width:100%
+}
+
+.table_container{
+	width:95%
+}
+.white{
+	color:white
+}
+
+
+.date_td i, input[type="date"]::-webkit-calendar-picker-indicator {
+	font-size: 20px;
+	color: #a9a9a9;
+}
+.date_td i {
+    right: 1%;
+    top: 30px;
+    z-index: 1;
+	position:absolute;
+	top:20%;
+	left:40%;
+}
+input[type="date"]::-webkit-calendar-picker-indicator {
+	right: 0;
+	z-index: 2;
+	opacity: 0;
+	cursor: pointer;
+}
+input[type="date"]{
+	background:transparent;
+	border:none;
+	position:absolute;
+	top:20%;
+	left:25%;
+	color:white;
+	z-index: 2;
+}
+.date_td{
+	position:relative
+}
+
+.linkbtnform{
+    display: inline-block;
+    padding: 5px 10px !important;
+    text-align: center;
+    text-decoration: none;
+    color: #ffffff !important;
+    background-color: transparent !important;
+    border-radius: 6px;
+    outline: none;
+    border: 1px solid !important;
+    font-weight: bolder;
+    margin: 5px;
+}
+
+.form_td{
+	display:flex;
+	justify-content: center;
+}
+
+
+.jumbotron{
+	height:10px;
+}

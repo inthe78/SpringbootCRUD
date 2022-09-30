@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Login</title>
+<link
+	href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700"
+	rel="stylesheet">
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+	integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+	crossorigin="anonymous">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+<link rel="stylesheet" th:href="@{/css/registration.css}">
+ 
+</head>
+<body class="login_body">
+
+     <div class="container">
+     <th:block th:include="fragments/header :: header"></th:block> 
+    </div> 
+
+	<div class="testbox">
+		<form action="login"  method="post">
+			<div class="banner">
+				<h1>Login</h1>
+			</div>
+			<div th:if="${param.error}" class="item alert alert-danger">
+				<p class="red">Invalid User name or Password!</p>
+			</div>
+			<div class="item">
+				<p>Email</p>
+				<input type="email" name="username"/>
+			</div>
+			<div class="item">
+				<p>Password</p>
+				<input type="password" name="password" />
+			</div>
+
+			<div class="btn-block">
+				<button type="submit" href="/">Login</button>
+				<br>
+				<a href="/registration" class="green">Register?</a>
+			</div>
+		</form>
+	</div>
+</body>
+</html>

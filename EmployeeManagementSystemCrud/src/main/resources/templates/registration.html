@@ -1,0 +1,68 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Login</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" th:href="@{/css/registration.css}">
+</head>
+
+<body>
+
+    <div class="container">
+        <th:block th:include="fragments/header :: header"></th:block>
+    </div>
+
+
+    <div class="testbox">
+        <form action="register" method="post" th:object="${user}">
+            <div class="banner">
+                <h1>Registration</h1>
+            </div>
+            <div th:if="${param.success}" class="item">
+                <span>Successful!</span>
+            </div>
+            <div class="item">
+                <p>Name</p>
+                <div class="item">
+                    <input type="text" name="name" th:field="*{name}" />
+                    <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="red"></p>
+                </div>
+            </div>
+            <div class="item">
+                <p>Email</p>
+                <input type="email" name="email" th:field="*{email}" />
+                <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="red"></p>
+            </div>
+            <div class="item">
+                <p>Password</p>
+                <input type="password" name="pass" th:field="*{pass}" />
+                <p th:if="${#fields.hasErrors('pass')}" th:errors="*{pass}" class="red"></p>
+            </div>
+            <div class="item">
+                <p>Confirm Password</p>
+                <input type="password" name="confirm_pass" />
+            </div>
+            <div class="item">
+                <p>Address</p>
+                <input type="text" name="address" th:field="*{address}" />
+                <p th:if="${#fields.hasErrors('address')}" th:errors="*{address}" class="red"></p>
+            </div>
+
+            <div class="item">
+                <p>Joining Date</p>
+                <input type="date" name="joiningDate" th:field="*{joiningDate}" />
+                <i class="fas fa-calendar-alt"></i>
+                <p th:if="${#fields.hasErrors('joiningDate')}" th:errors="*{joiningDate}" class="red"></p>
+            </div>
+            <div class="btn-block">
+                <button type="submit" href="/">Register</button>
+                <br>
+                <a href="/login" class="green">Login?</a>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>
